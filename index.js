@@ -39,40 +39,194 @@ if (!FB_PAGE_TOKEN) {
 }
 const FB_VERIFY_TOKEN = config.FB_VERIFY_TOKEN;
 
-// Should be retrieved from data
-const PCK_DESC = {
-  "info": {
-            "title": "INFO Agent",
-            "image_url": "http://i.imgur.com/FnKsO1M.png",
-            "subtitle": "Add this for basic information chat.",
-            "buttons": [{
-                "type": "web_url",
-                "url": "https://petersapparel.parseapp.com/view_item?item_id=100",
-                "title": "Activate Now"
-            }]
-          },
-  "sales":{
-            "title": "SALES Agent",
-            "image_url": "http://i.imgur.com/BVz2al5.png",
-            "subtitle": "Add this to power up your page sales.",
-            "buttons": [{
-                "type": "web_url",
-                "url": "https://petersapparel.parseapp.com/view_item?item_id=101",
-                "title": "Activate Now"
-            }]
-          },
-  "support":{
-            "title": "SUPPORT Agent",
-            "image_url": "http://i.imgur.com/CITGYe8.png",
-            "subtitle": "Add this for support information chat",
-            "buttons": [{
-                "type": "web_url",
-                "url": "https://petersapparel.parseapp.com/view_item?item_id=101",
-                "title": "Activate Now"
-            }]
-          }
+
+// ---- PANELS
+const fbAppointmentsEarlyOrLate = (senderId) => {
+  const msg = {
+                "attachment": {
+                  "type": "template",
+                  "payload": {
+                    "template_type": "generic",
+                    "elements": [
+                      {
+                        "title":      "Earlier Booking",
+                        "subtitle":   "Select this option for three earlier alternatives",
+                        "image_url":  "http://i.imgur.com/a0Cn0iG.png",
+                        "buttons":[
+                          {
+                            "type":     "postback",
+                            "title":    "EARLIER",
+                            "payload":  JSON.stringify({
+                                          'type':   'change_time_earlier',
+                                          'id':     '12345',
+                                        })
+                          }
+                        ]
+                      },
+                      {
+                        "title":      "Later Booking",
+                        "subtitle":   "Select this option for three later alternatives",
+                        "image_url":  "http://i.imgur.com/dboT6Ps.png",
+                        "buttons":[
+                          {
+                            "type":     "postback",
+                            "title":    "LATER",
+                            "payload":  JSON.stringify({
+                                          'type':   'change_time_later',
+                                          'id':     '12345',
+                                        })
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              };
+    // Send the message directly
+    fbMessageDirect(senderId, msg);
 };
-// -----------------------------
+
+const fbAppointmentsEarlier = (senderId) => {
+  const msg = {
+                "attachment": {
+                  "type": "template",
+                  "payload": {
+                    "template_type": "generic",
+                    "elements": [
+                      {
+                        "title":      "Change to 10am",
+                        "image_url":  "http://i.imgur.com/a0Cn0iG.png",
+                        "buttons":[
+                          {
+                            "type":     "postback",
+                            "title":    "ACCEPT TIME",
+                            "payload":  JSON.stringify({
+                                          'type':   'change_time',
+                                          'id':     '12345',
+                                          'time':    '10am'
+                                        })
+                          }
+                        ]
+                      },
+                      {
+                        "title":      "Change to 11am",
+                        "image_url":  "http://i.imgur.com/a0Cn0iG.png",
+                        "buttons":[
+                          {
+                            "type":     "postback",
+                            "title":    "ACCEPT TIME",
+                            "payload":  JSON.stringify({
+                                          'type':   'change_time',
+                                          'id':     '12345',
+                                          'time':    '11am'
+                                        })
+                          }
+                        ]
+                      },
+                      {
+                        "title":      "Change to 12pm",
+                        "image_url":  "http://i.imgur.com/a0Cn0iG.png",
+                        "buttons":[
+                          {
+                            "type":     "postback",
+                            "title":    "ACCEPT TIME",
+                            "payload":  JSON.stringify({
+                                          'type':   'change_time',
+                                          'id':     '12345',
+                                          'time':    '12pm'
+                                        })
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              };
+    // Send the message directly
+    fbMessageDirect(senderId, msg);
+};
+
+const fbAppointmentsLater = (senderId) => {
+  const msg = {
+                "attachment": {
+                  "type": "template",
+                  "payload": {
+                    "template_type": "generic",
+                    "elements": [
+                      {
+                        "title":      "Change to 2pm",
+                        "image_url":  "http://i.imgur.com/dboT6Ps.png",
+                        "buttons":[
+                          {
+                            "type":     "postback",
+                            "title":    "ACCEPT TIME",
+                            "payload":  JSON.stringify({
+                                          'type':   'change_time',
+                                          'id':     '12345',
+                                          'time':    '2pm'
+                                        })
+                          }
+                        ]
+                      },
+                      {
+                        "title":      "Change to 3pm",
+                        "image_url":  "http://i.imgur.com/dboT6Ps.png",
+                        "buttons":[
+                          {
+                            "type":     "postback",
+                            "title":    "ACCEPT TIME",
+                            "payload":  JSON.stringify({
+                                          'type':   'change_time',
+                                          'id':     '12345',
+                                          'time':    '3pm'
+                                        })
+                          }
+                        ]
+                      },
+                      {
+                        "title":      "Change to 4pm",
+                        "image_url":  "http://i.imgur.com/dboT6Ps.png",
+                        "buttons":[
+                          {
+                            "type":     "postback",
+                            "title":    "ACCEPT TIME",
+                            "payload":  JSON.stringify({
+                                          'type':   'change_time',
+                                          'id':     '12345',
+                                          'time':    '4pm'
+                                        })
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              };
+    // Send the message directly
+    fbMessageDirect(senderId, msg);
+};
+
+const fbConfirmAppointmentChange = (senderId, newtime) => {
+  const msg = {
+
+                "attachment": {
+                  "type": "template",
+                  "payload": {
+                    "template_type": "generic",
+                    "elements": [
+                      {
+                        "title":      "UPDATED to " + newtime,
+                        "image_url":  "http://i.imgur.com/riUAghy.jpg",
+                        "subtitle":   newtime +" on Thursday 22 June\r\n15 Lavender Crescent, DL16 7BZ",
+                      }
+                    ]
+                  }
+                }
+              };
+    // Send the message directly
+    fbMessageDirect(senderId, msg);
+    fbMessage(senderId, "Thats all booked and confirmed.  Is there anything else I can help you with?")
+};
 
 // Messenger API specific code
 
@@ -85,6 +239,25 @@ const fbReq = request.defaults({
   qs: { access_token: FB_PAGE_TOKEN },
   headers: {'Content-Type': 'application/json'},
 });
+
+const fbMessageDirect = (recipientId, msg, cb) => {
+  const opts = {
+    form: {
+      recipient: {
+        id: recipientId,
+      },
+      message: msg,
+    },
+  };
+
+  console.log('prep send');
+  console.log(msg);
+  fbReq(opts, (err, resp, data) => {
+    if (cb) {
+      cb(err || data.error && data.error.message, data);
+    }
+  });
+};
 
 const fbMessage = (recipientId, msg, cb) => {
   const opts = {
@@ -116,6 +289,47 @@ const fbPackageMessage = (recipientId, context, cb) => {
                     "payload": {
                       "template_type": "generic",
                       "elements": [PCK_DESC[context.package_type.toLowerCase()]]
+                    }
+                  }
+                }
+    },
+  };
+  fbReq(opts, (err, resp, data) => {
+    if (cb) {
+      cb(err || data.error && data.error.message, data);
+    }
+  });
+};
+
+const fbAppointmentsLive = (recipientId, context, cb) => {
+  const opts = {
+    form: {
+      recipient: {
+        id: recipientId,
+      },
+      message:  {
+                  "attachment": {
+                    "type": "template",
+                    "payload": {
+                      "template_type": "generic",
+                      "elements": [
+                        {
+                          "title":      "NK02 YES",
+                          "image_url":  "http://i.imgur.com/riUAghy.jpg",
+                          "subtitle":   "1pm on Thursday 22 June\r\n15 Lavender Crescent, DL16 7BZ",
+                          "buttons":[
+                            {
+                              "type":     "postback",
+                              "title":    "CHANGE THIS BOOKING",
+                              "payload":  JSON.stringify({
+                                            'type':   'change_booking',
+                                            'id':     '12345',
+                                            'time':    '13:00:00+00:00'
+                                          })
+                            }
+                          ]
+                        }
+                      ]
                     }
                   }
                 }
@@ -229,6 +443,29 @@ const actions = {
       cb();
     }
   },
+  ['list_live_appointments'](sessionId, context, cb) {
+    console.log(context);
+    const recipientId = sessions[sessionId].fbid;
+    if (recipientId) {
+      fbAppointmentsLive(recipientId, context, (err, data) => {
+        if (err) {
+          console.log(
+            'Oops! An error occurred while forwarding the response to',
+            recipientId,
+            ':',
+            err
+          );
+        }
+
+        // Let's give the wheel back to our bot
+        cb();
+      });
+    } else {
+      console.log('Oops! Couldn\'t find user for session:', sessionId);
+      // Giving the wheel back to our bot
+      cb();
+    }
+  },
   error(sessionId, context, error) {
     console.log(error.message);
   }
@@ -261,6 +498,32 @@ app.post('/fb', (req, res) => {
   // Parsing the Messenger API response
   const messaging = getFirstMessagingEntry(req.body);
   console.log('messaging:' + messaging);
+
+  if (messaging && messaging.postback && messaging.recipient.id === FB_PAGE_ID) {
+
+    const sender = messaging.sender.id;
+    const sessionId = findOrCreateSession(sender);
+
+    const payload = JSON.parse(messaging.postback.payload);
+
+    switch(payload.type){
+      case 'change_booking':
+        fbAppointmentsEarlyOrLate(sender);
+        break;
+      case 'change_time_earlier':
+        fbAppointmentsEarlier(sender);
+        break;
+      case 'change_time_later':
+        fbAppointmentsLater(sender);
+        break;
+      case 'change_time':
+        fbConfirmAppointmentChange(sender, payload.time);
+        break;
+    }
+
+  };
+
+
   if (messaging && messaging.message && messaging.recipient.id === FB_PAGE_ID) {
     // Yay! We got a new message!
 
